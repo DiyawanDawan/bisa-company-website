@@ -1,6 +1,5 @@
-import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import CopyLinkButton from '@/components/CopyLinkButton';
@@ -9,6 +8,7 @@ import {
   getPostBySlugs,
   getRelatedPosts,
   getAllPostParams,
+  getBlogTagPath,
 } from '@/lib/blogUtils';
 
 type PageProps = {
@@ -94,12 +94,13 @@ export default async function BlogDetailPage({ params }: PageProps) {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
-                    <span
+                    <Link
                       key={tag}
-                      className="px-3 py-1 rounded-full bg-elevarm-neutral text-xs font-semibold text-elevarm-black"
+                      href={getBlogTagPath(tag)}
+                      className="px-3 py-1.5 rounded-full bg-elevarm-neutral border border-slate-200 text-xs font-semibold text-elevarm-black transition-colors hover:border-elevarm-cobalt hover:bg-elevarm-cobalt/5 hover:text-elevarm-cobalt"
                     >
                       {tag}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               </div>

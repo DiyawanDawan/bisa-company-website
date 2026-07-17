@@ -13,6 +13,11 @@ export function getPostPath(post: BlogPost): string {
   return `/blog/${post.categorySlug}/${post.slug}`;
 }
 
+/** Blog list URL filtered by tag (e.g. /blog?tag=Hama). */
+export function getBlogTagPath(tag: string): string {
+  return `/blog?tag=${encodeURIComponent(tag)}`;
+}
+
 export function getPostBySlugs(categorySlug: string, slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.categorySlug === categorySlug && p.slug === slug);
 }
