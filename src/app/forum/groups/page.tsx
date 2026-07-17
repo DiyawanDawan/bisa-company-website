@@ -5,6 +5,7 @@ import Link from 'next/link';
 import PageBackLink from '@/components/PageBackLink';
 import ForumGroupCard from '@/components/forum/ForumGroupCard';
 import ForumAppCta from '@/components/forum/ForumAppCta';
+import ForumSearchInput from '@/components/forum/ForumSearchInput';
 import { forumGroupsHeroCopy } from '@/data/forumContent';
 import { fetchForumGroups, type ForumGroup } from '@/lib/forumApi';
 import { ScrollReveal, StaggerReveal, StaggerItem } from '@/components/ScrollReveal';
@@ -63,12 +64,10 @@ export default function ForumGroupsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <h2 className="text-xl font-bold text-elevarm-black font-display">Grup Publik</h2>
-            <input
-              type="text"
+            <ForumSearchInput
               placeholder="Cari grup..."
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full sm:w-72 px-4 py-2.5 border border-elevarm-neutral-100 rounded-lg text-sm focus:outline-none focus:border-elevarm-cobalt"
+              onChange={setSearch}
             />
           </div>
 

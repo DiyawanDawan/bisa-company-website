@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import ForumPostCard from '@/components/forum/ForumPostCard';
 import ForumGroupCard from '@/components/forum/ForumGroupCard';
+import ForumSearchInput from '@/components/forum/ForumSearchInput';
 import AppDownloadSection from '@/components/AppDownloadSection';
 import { forumFeatures, forumHeroCopy } from '@/data/forumContent';
 import { fetchForumGroups, fetchForumPosts, type ForumGroup, type ForumPost } from '@/lib/forumApi';
@@ -169,15 +170,12 @@ export default function ForumPage() {
                 </button>
               ))}
             </nav>
-            <div className="relative w-full sm:w-64 shrink-0">
-              <input
-                type="text"
-                placeholder="Cari diskusi..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full px-4 py-2.5 border border-elevarm-neutral-100 rounded-lg text-sm text-elevarm-black placeholder:text-elevarm-grey focus:outline-none focus:border-elevarm-cobalt transition-colors"
-              />
-            </div>
+            <ForumSearchInput
+              className="w-full sm:w-72"
+              placeholder="Cari diskusi..."
+              value={search}
+              onChange={setSearch}
+            />
           </div>
 
           {loading && (
