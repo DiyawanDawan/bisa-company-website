@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import ForumPostCard from '@/components/forum/ForumPostCard';
 import ForumAppCta from '@/components/forum/ForumAppCta';
+import ForumMediaImage from '@/components/forum/ForumMediaImage';
 import { fetchForumGroup, fetchForumPosts, type ForumGroup, type ForumPost } from '@/lib/forumApi';
-import { resolveMediaUrl } from '@/lib/media-url';
 import { ScrollReveal, StaggerReveal, StaggerItem } from '@/components/ScrollReveal';
 
 function StatPill({ icon, label }: { icon: React.ReactNode; label: string }) {
@@ -74,14 +74,10 @@ export default function ForumGroupDetailView({ id }: { id: string }) {
       {/* Hero banner — full width */}
       <section className="pt-header">
         <div className="relative w-full h-52 sm:h-64 md:h-72 lg:h-80 overflow-hidden bg-gradient-to-br from-[#135122] to-[#1a7a34]">
-          {group.bannerUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={resolveMediaUrl(group.bannerUrl) ?? group.bannerUrl}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          ) : null}
+          <ForumMediaImage
+            url={group.bannerUrl}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -122,14 +118,16 @@ export default function ForumGroupDetailView({ id }: { id: string }) {
             <div className="relative flex flex-col sm:flex-row gap-5 sm:gap-6 pb-8 pt-0">
               <div className="relative -mt-12 sm:-mt-14 shrink-0 self-start z-10">
                 <div className="h-24 w-24 sm:h-28 sm:w-28 rounded-2xl border-4 border-white bg-elevarm-neutral overflow-hidden shadow-lg">
-                  {group.avatarUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={resolveMediaUrl(group.avatarUrl) ?? group.avatarUrl} alt={group.name} className="h-full w-full object-cover" />
-                  ) : (
-                    <span className="flex h-full w-full items-center justify-center text-4xl font-bold text-elevarm-cobalt">
-                      {group.name.charAt(0)}
-                    </span>
-                  )}
+                  <ForumMediaImage
+                    url={group.avatarUrl}
+                    alt={group.name}
+                    className="h-full w-full object-cover"
+                    fallback={
+                      <span className="flex h-full w-full items-center justify-center text-4xl font-bold text-elevarm-cobalt">
+                        {group.name.charAt(0)}
+                      </span>
+                    }
+                  />
                 </div>
               </div>
 

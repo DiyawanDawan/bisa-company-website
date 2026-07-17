@@ -17,7 +17,13 @@ function isStorageObjectPath(path: string): boolean {
   return STORAGE_PREFIXES.some((p) => path.startsWith(p));
 }
 
-/** DB path → https://loremflickr.com/{w}/{h}/{keywords}?lock=n */
+/** Stable Picsum URL — LoremFlickr is unreliable (often 5xx / hotlink blocks). */
+function picsumUrl(width: string, height: string, seed: string): string {
+  const safeSeed = seed.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 64) || 'bisa';
+  return `https://picsum.photos/seed/${safeSeed}/${width}/${height}`;
+}
+
+/** DB path external/loremflickr/... → picsum (deterministic seed). */
 function loremFlickrPathToUrl(dbPath: string): string {
   if (!dbPath.startsWith(LOREM_FLICKR_PREFIX)) return dbPath;
 
@@ -34,18 +40,40 @@ function loremFlickrPathToUrl(dbPath: string): string {
     i += 1;
   }
 
-  const keywordPath = keywordParts.join('/');
-  const url = new URL(`https://loremflickr.com/${width}/${height}/${keywordPath}`);
-
+  let lock = '0';
+  let random = '';
   if (segments[i] === 'lock' && segments[i + 1]) {
-    url.searchParams.set('lock', segments[i + 1]);
+    lock = segments[i + 1];
     i += 2;
   }
   if (segments[i] === 'random' && segments[i + 1]) {
-    url.searchParams.set('random', segments[i + 1]);
+    random = segments[i + 1];
   }
 
-  return url.toString();
+  const kw = keywordParts.join('-').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 24);
+  const seed = `bisa-lf-${lock}${random ? `-r${random}` : ''}${kw ? `-${kw}` : ''}`;
+  return picsumUrl(width, height, seed);
+}
+
+/** Rewrite live https://loremflickr.com/... responses from older API deploys. */
+function rewriteLoremFlickrHttpUrl(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname !== 'loremflickr.com') return null;
+
+    const parts = parsed.pathname.split('/').filter(Boolean);
+    if (parts.length < 2) return null;
+
+    const width = parts[0];
+    const height = parts[1];
+    const keywords = parts.slice(2).join('-').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 24);
+    const lock = parsed.searchParams.get('lock') ?? '0';
+    const random = parsed.searchParams.get('random');
+    const seed = `bisa-lf-${lock}${random ? `-r${random}` : ''}${keywords ? `-${keywords}` : ''}`;
+    return picsumUrl(width, height, seed);
+  } catch {
+    return null;
+  }
 }
 
 function extractStorageKeyFromUrl(url: string): string | null {
@@ -73,6 +101,9 @@ export function resolveMediaUrl(path: string | null | undefined): string | null 
   }
 
   if (value.startsWith('http://') || value.startsWith('https://')) {
+    const rewritten = rewriteLoremFlickrHttpUrl(value);
+    if (rewritten) return rewritten;
+
     const key = extractStorageKeyFromUrl(value);
     if (key) return resolveMediaUrl(key);
     return value;
