@@ -22,7 +22,7 @@ export default function ImpactPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <PageBackLink />
 
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-start">
+          <div className="mt-6 sm:mt-8 md:mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-start">
             <ScrollReveal className="lg:col-span-5 xl:col-span-5 space-y-5">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="text-sm font-bold text-elevarm-accent uppercase tracking-wider">
