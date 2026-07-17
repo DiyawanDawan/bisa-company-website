@@ -80,16 +80,7 @@ export default function ForumGroupsPage() {
           )}
           {!loading && !error && groups.length === 0 && (
             <div className="rounded-xl border border-elevarm-neutral-100 bg-elevarm-neutral p-8 text-center space-y-3">
-              <p className="text-elevarm-grey">Belum ada grup publik di database.</p>
-              <p className="text-xs text-elevarm-grey max-w-md mx-auto">
-                Grup di-seed lewat migrasi forum. Jalankan di folder Backend:
-              </p>
-              <code className="block text-xs font-mono bg-white border border-elevarm-neutral-100 rounded-lg px-3 py-2 text-elevarm-black">
-                npm run db:setup && npm run seed
-              </code>
-              <p className="text-xs text-elevarm-grey">
-                Lalu restart backend dan refresh halaman ini (website port 3002).
-              </p>
+              <p className="text-elevarm-grey">Belum ada grup publik tersedia saat ini.</p>
             </div>
           )}
           {!loading && groups.length > 0 && (

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getForumGroupPath } from '@/lib/forumPaths';
+import { resolveMediaUrl } from '@/lib/media-url';
 import { formatForumDate, type ForumGroup } from '@/lib/forumApi';
 
 export default function ForumGroupCard({ group }: { group: ForumGroup }) {
@@ -11,13 +12,13 @@ export default function ForumGroupCard({ group }: { group: ForumGroup }) {
       <div className="relative w-28 sm:w-36 shrink-0 bg-gradient-to-br from-[#135122] to-[#1a7a34]">
         {group.bannerUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={group.bannerUrl} alt="" className="h-full w-full object-cover opacity-90" />
+          <img src={resolveMediaUrl(group.bannerUrl) ?? group.bannerUrl} alt="" className="h-full w-full object-cover opacity-90" />
         ) : null}
         <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
         <div className="absolute bottom-3 left-3 h-12 w-12 rounded-lg border-2 border-white bg-elevarm-neutral overflow-hidden shadow-md">
           {group.avatarUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={group.avatarUrl} alt={group.name} className="h-full w-full object-cover" />
+            <img src={resolveMediaUrl(group.avatarUrl) ?? group.avatarUrl} alt={group.name} className="h-full w-full object-cover" />
           ) : (
             <span className="flex h-full w-full items-center justify-center text-lg font-bold text-elevarm-cobalt">
               {group.name.charAt(0)}

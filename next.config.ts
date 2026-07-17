@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
-const backendUrl = process.env.BACKEND_URL ?? "http://localhost:3000";
+const backendUrl = process.env.BACKEND_URL?.trim()?.replace(/\/+$/, "").replace(/\/api\/v1$/i, "")
+  ?? (process.env.NODE_ENV === "production"
+    ? "https://backend-dev-v1.bisaagri.com"
+    : "http://localhost:3000");
 
 const nextConfig: NextConfig = {
   images: {
@@ -9,6 +12,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "**.r2.cloudflarestorage.com" },
       { protocol: "https", hostname: "**.amazonaws.com" },
       { protocol: "https", hostname: "picsum.photos" },
+      { protocol: "https", hostname: "cdn.bisaagri.com" },
     ],
   },
   async rewrites() {

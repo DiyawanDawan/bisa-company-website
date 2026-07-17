@@ -1,3 +1,5 @@
+import { resolveMediaUrl } from '@/lib/media-url';
+
 export type ForumUser = {
   id: string;
   fullName: string;
@@ -80,7 +82,8 @@ export function extractMediaUrls(
   if (!media?.length) return [];
   return media
     .map((item) => (typeof item === 'string' ? item : item?.url))
-    .filter((url): url is string => Boolean(url));
+    .filter((url): url is string => Boolean(url))
+    .map((url) => resolveMediaUrl(url) ?? url);
 }
 
 export function formatForumDate(iso: string): string {

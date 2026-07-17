@@ -5,6 +5,7 @@ import Link from 'next/link';
 import ForumPostCard from '@/components/forum/ForumPostCard';
 import ForumAppCta from '@/components/forum/ForumAppCta';
 import { fetchForumGroup, fetchForumPosts, type ForumGroup, type ForumPost } from '@/lib/forumApi';
+import { resolveMediaUrl } from '@/lib/media-url';
 import { ScrollReveal, StaggerReveal, StaggerItem } from '@/components/ScrollReveal';
 
 function StatPill({ icon, label }: { icon: React.ReactNode; label: string }) {
@@ -76,7 +77,7 @@ export default function ForumGroupDetailView({ id }: { id: string }) {
           {group.bannerUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={group.bannerUrl}
+              src={resolveMediaUrl(group.bannerUrl) ?? group.bannerUrl}
               alt=""
               className="absolute inset-0 h-full w-full object-cover"
             />
@@ -123,7 +124,7 @@ export default function ForumGroupDetailView({ id }: { id: string }) {
                 <div className="h-24 w-24 sm:h-28 sm:w-28 rounded-2xl border-4 border-white bg-elevarm-neutral overflow-hidden shadow-lg">
                   {group.avatarUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={group.avatarUrl} alt={group.name} className="h-full w-full object-cover" />
+                    <img src={resolveMediaUrl(group.avatarUrl) ?? group.avatarUrl} alt={group.name} className="h-full w-full object-cover" />
                   ) : (
                     <span className="flex h-full w-full items-center justify-center text-4xl font-bold text-elevarm-cobalt">
                       {group.name.charAt(0)}

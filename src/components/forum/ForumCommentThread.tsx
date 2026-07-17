@@ -2,16 +2,18 @@
 
 import React, { useState } from 'react';
 import { formatForumDate, countAllComments, type ForumComment } from '@/lib/forumApi';
+import { resolveMediaUrl } from '@/lib/media-url';
 
 function CommentAvatar({ name, url, small }: { name: string; url?: string | null; small?: boolean }) {
   const size = small ? 'h-8 w-8 text-xs' : 'h-10 w-10 text-sm';
   const initial = name.trim().charAt(0).toUpperCase() || '?';
 
   if (url) {
+    const src = resolveMediaUrl(url) ?? url;
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        src={url}
+        src={src}
         alt={name}
         className={`${size} shrink-0 rounded-full object-cover bg-elevarm-neutral ring-2 ring-white`}
       />

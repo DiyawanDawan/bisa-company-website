@@ -11,6 +11,7 @@ import {
   getCommentCount,
   type ForumPost,
 } from '@/lib/forumApi';
+import { resolveMediaUrl } from '@/lib/media-url';
 import { ScrollReveal } from '@/components/ScrollReveal';
 
 function VoteColumn({ score }: { score: number }) {
@@ -109,7 +110,7 @@ export default function ForumPostDetailView({ id }: { id: string }) {
                     {post.user?.avatarUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
-                        src={post.user.avatarUrl}
+                        src={resolveMediaUrl(post.user.avatarUrl) ?? post.user.avatarUrl}
                         alt={author}
                         className="h-10 w-10 rounded-full object-cover ring-2 ring-white"
                       />

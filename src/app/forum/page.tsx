@@ -131,15 +131,12 @@ export default function ForumPage() {
             )}
             {groupsError && !groupsLoading && (
               <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 text-center">
-                {groupsError} Pastikan backend berjalan di port 3000 dan seed sudah dijalankan.
+                {groupsError} Coba muat ulang halaman. Jika masalah berlanjut, hubungi tim BISA.
               </div>
             )}
             {!groupsLoading && !groupsError && groups.length === 0 && (
               <div className="rounded-xl border border-elevarm-neutral-100 bg-elevarm-neutral p-6 text-center space-y-2">
-                <p className="text-elevarm-grey text-sm">Belum ada grup publik di database.</p>
-                <p className="text-xs text-elevarm-grey">
-                  Jalankan: <code className="font-mono">cd Backend && npm run db:setup && npm run seed</code>
-                </p>
+                <p className="text-elevarm-grey text-sm">Belum ada grup publik tersedia saat ini.</p>
               </div>
             )}
             {!groupsLoading && groups.length > 0 && (
@@ -190,7 +187,7 @@ export default function ForumPage() {
             <div className="rounded-xl border border-amber-200 bg-amber-50 p-6 text-center space-y-2">
               <p className="text-sm font-semibold text-amber-900">{error}</p>
               <p className="text-xs text-amber-800">
-                Jalankan backend di port 3000 atau set env <code className="font-mono">BACKEND_URL</code>.
+                Coba muat ulang halaman. Diskusi forum membutuhkan koneksi ke server BISA.
               </p>
             </div>
           )}

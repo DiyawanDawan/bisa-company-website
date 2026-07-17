@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getForumPostPath } from '@/lib/forumPaths';
+import { resolveMediaUrl } from '@/lib/media-url';
 import {
   extractMediaUrls,
   formatForumDate,
@@ -10,9 +11,10 @@ import {
 function Avatar({ name, url }: { name: string; url?: string | null }) {
   const initial = name.trim().charAt(0).toUpperCase() || '?';
   if (url) {
+    const src = resolveMediaUrl(url) ?? url;
     return (
       // eslint-disable-next-line @next/next/no-img-element
-      <img src={url} alt={name} className="h-10 w-10 rounded-full object-cover bg-elevarm-neutral ring-2 ring-white" />
+      <img src={src} alt={name} className="h-10 w-10 rounded-full object-cover bg-elevarm-neutral ring-2 ring-white" />
     );
   }
   return (
