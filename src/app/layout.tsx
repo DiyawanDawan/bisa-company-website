@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   title: 'BISA — Platform Ekonomi Sirkular Biomassa Pertanian',
   description:
     'BISA menghubungkan petani, pengepul, dan industri biochar dalam satu aplikasi mobile: marketplace 3 layer, AI prediksi grade biochar, GIS supply-demand, escrow, dan forum edukasi. Pilot Lombok Tengah, NTB.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: [{ url: '/apple-icon.png', type: 'image/png' }],
+  },
 };
 
 export default function RootLayout({
