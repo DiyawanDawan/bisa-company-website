@@ -78,27 +78,27 @@ export default function ImpactPage() {
       </section>
 
       <section className="bg-[#f0fdf4] py-14 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="space-y-8">
-            <div className="space-y-2 max-w-3xl">
-              <p className="text-base sm:text-lg font-semibold text-elevarm-black">
-                {impactHeroCopy.pilotHeading}
-              </p>
-              <p className="text-sm text-elevarm-grey leading-relaxed">
-                {impactHeroCopy.pilotSubtext}
-              </p>
-            </div>
-            <StaggerReveal
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-x divide-y divide-[#135122]/12 border border-[#135122]/12 rounded-xl overflow-hidden"
-              stagger={0.06}
-            >
-              {pilotYearOneTargets.map((target) => (
-                <StaggerItem key={target.label} className="min-w-0">
-                  <PilotTargetCard target={target} />
-                </StaggerItem>
-              ))}
-            </StaggerReveal>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <ScrollReveal className="space-y-2 max-w-3xl">
+            <p className="text-base sm:text-lg font-semibold text-elevarm-black">
+              {impactHeroCopy.pilotHeading}
+            </p>
+            <p className="text-sm text-elevarm-grey leading-relaxed">
+              {impactHeroCopy.pilotSubtext}
+            </p>
           </ScrollReveal>
+
+          {/* Sibling of ScrollReveal — nested whileInView kept cards stuck at opacity 0 */}
+          <StaggerReveal
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#135122]/12 border border-[#135122]/12 rounded-xl overflow-hidden shadow-sm"
+            stagger={0.06}
+          >
+            {pilotYearOneTargets.map((target) => (
+              <StaggerItem key={target.label} className="min-w-0 bg-white">
+                <PilotTargetCard target={target} />
+              </StaggerItem>
+            ))}
+          </StaggerReveal>
         </div>
       </section>
 

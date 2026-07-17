@@ -2,7 +2,7 @@ import type { Transition, Variants } from 'framer-motion';
 
 export const MOTION_EASE: Transition['ease'] = [0.25, 0.1, 0.25, 1];
 
-export const MOTION_VIEWPORT = { once: true, margin: '-80px' as const };
+export const MOTION_VIEWPORT = { once: true, amount: 0.15, margin: '0px 0px -40px 0px' as const };
 
 export const MOTION_DURATION = {
   fast: 0.35,
