@@ -5,7 +5,7 @@ import { Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import FloatingPhoneMockup from '@/components/FloatingPhoneMockup';
-import { bisaAssets } from '@/data/bisaAssets';
+import { bisaAssets, bisaBrand } from '@/data/bisaAssets';
 import PlayStoreBadge from '@/components/PlayStoreBadge';
 
 type ProductCta =
@@ -42,6 +42,16 @@ const productsList: {
     desc: 'Monitoring suhu tungku real-time (sensor atau foto termometer). Forum terkurati dan asisten virtual LLM+RAG untuk belajar produksi biochar mandiri.',
     image: bisaAssets.screenshots.forum,
     cta: { type: 'website', href: '/forum', label: 'Lihat Forum & Grup' },
+  },
+  {
+    title: 'Admin Portal',
+    desc: 'Panel operasional BISA untuk moderasi pengguna, transaksi, sengketa, dan Customer Service — cocok untuk demo tim internal.',
+    image: bisaAssets.screenshots.main,
+    cta: {
+      type: 'website',
+      href: bisaBrand.adminDemoUrl,
+      label: 'Coba Demo Admin',
+    },
   },
 ];
 

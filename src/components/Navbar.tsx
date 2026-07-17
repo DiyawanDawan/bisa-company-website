@@ -122,7 +122,15 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="hidden md:block shrink-0">
+        <div className="hidden md:flex shrink-0 items-center gap-2">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-md border border-neutral-200 bg-white px-4 py-2 text-elevarm-black font-semibold text-sm hover:bg-elevarm-neutral transition-colors duration-200 shadow-sm"
+            href={bisaBrand.adminDemoUrl}
+          >
+            Demo Admin
+          </a>
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -184,13 +192,22 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          <div className="pt-4 pb-2 px-3">
+          <div className="pt-4 pb-2 px-3 flex flex-col gap-2">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={bisaBrand.adminDemoUrl}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-md text-base font-semibold text-elevarm-black bg-white hover:bg-elevarm-neutral transition-all duration-200"
+            >
+              Demo Admin
+            </a>
             <a
               target="_blank"
               rel="noopener noreferrer"
               href={`mailto:${bisaBrand.email}`}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-md text-base font-semibold text-elevarm-black bg-white hover:bg-elevarm-neutral transition-all duration-200"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-md text-base font-semibold text-white bg-white/10 hover:bg-white/15 transition-all duration-200"
             >
               Contact Us
             </a>
