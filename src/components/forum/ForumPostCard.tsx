@@ -1,28 +1,12 @@
 import Link from 'next/link';
+import ForumAvatar from '@/components/forum/ForumAvatar';
 import { getForumPostPath } from '@/lib/forumPaths';
-import { resolveMediaUrl } from '@/lib/media-url';
 import {
   extractMediaUrls,
   formatForumDate,
   getCommentCount,
   type ForumPost,
 } from '@/lib/forumApi';
-
-function Avatar({ name, url }: { name: string; url?: string | null }) {
-  const initial = name.trim().charAt(0).toUpperCase() || '?';
-  if (url) {
-    const src = resolveMediaUrl(url) ?? url;
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img src={src} alt={name} className="h-10 w-10 rounded-full object-cover bg-elevarm-neutral ring-2 ring-white" />
-    );
-  }
-  return (
-    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-elevarm-info-100 text-base font-bold text-elevarm-cobalt ring-2 ring-white">
-      {initial}
-    </span>
-  );
-}
 
 function VoteColumn({ score }: { score: number }) {
   return (
@@ -70,7 +54,7 @@ export default function ForumPostCard({ post }: { post: ForumPost }) {
         <div className="min-w-0 flex-1 space-y-2.5">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-elevarm-grey">
             <div className="flex items-center gap-2">
-              <Avatar name={author} url={post.user?.avatarUrl} />
+              <ForumAvatar name={author} url={post.user?.avatarUrl} />
               <span className="font-semibold text-elevarm-black">{author}</span>
             </div>
             <span className="hidden sm:inline text-slate-300">•</span>

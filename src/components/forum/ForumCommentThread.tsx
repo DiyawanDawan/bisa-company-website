@@ -1,33 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import ForumAvatar from '@/components/forum/ForumAvatar';
 import { formatForumDate, countAllComments, type ForumComment } from '@/lib/forumApi';
-import { resolveMediaUrl } from '@/lib/media-url';
-
-function CommentAvatar({ name, url, small }: { name: string; url?: string | null; small?: boolean }) {
-  const size = small ? 'h-8 w-8 text-xs' : 'h-10 w-10 text-sm';
-  const initial = name.trim().charAt(0).toUpperCase() || '?';
-
-  if (url) {
-    const src = resolveMediaUrl(url) ?? url;
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={src}
-        alt={name}
-        className={`${size} shrink-0 rounded-full object-cover bg-elevarm-neutral ring-2 ring-white`}
-      />
-    );
-  }
-
-  return (
-    <span
-      className={`${size} flex shrink-0 items-center justify-center rounded-full bg-elevarm-info-100 font-bold text-elevarm-cobalt ring-2 ring-white`}
-    >
-      {initial}
-    </span>
-  );
-}
 
 function CommentBubble({
   comment,
@@ -87,7 +62,11 @@ function CommentItem({ comment, depth = 0 }: { comment: ForumComment; depth?: nu
             aria-hidden
           />
         )}
-        <CommentAvatar name={comment.user?.fullName ?? '?'} url={comment.user?.avatarUrl} small={isReply} />
+        <ForumAvatar
+          name={comment.user?.fullName ?? '?'}
+          url={comment.user?.avatarUrl}
+          className={isReply ? 'h-8 w-8 text-xs' : 'h-10 w-10 text-sm'}
+        />
         <CommentBubble comment={comment} isReply={isReply} />
       </div>
 

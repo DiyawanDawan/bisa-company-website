@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import ForumAppCta from '@/components/forum/ForumAppCta';
+import ForumAvatar from '@/components/forum/ForumAvatar';
 import ForumCommentThread from '@/components/forum/ForumCommentThread';
 import {
   extractMediaUrls,
@@ -11,7 +12,6 @@ import {
   getCommentCount,
   type ForumPost,
 } from '@/lib/forumApi';
-import { resolveMediaUrl } from '@/lib/media-url';
 import { ScrollReveal } from '@/components/ScrollReveal';
 
 function VoteColumn({ score }: { score: number }) {
@@ -107,18 +107,7 @@ export default function ForumPostDetailView({ id }: { id: string }) {
                 <VoteColumn score={post.upvotes} />
                 <div className="min-w-0 flex-1 p-5 sm:p-6 space-y-5">
                   <div className="flex items-center gap-3">
-                    {post.user?.avatarUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={resolveMediaUrl(post.user.avatarUrl) ?? post.user.avatarUrl}
-                        alt={author}
-                        className="h-10 w-10 rounded-full object-cover ring-2 ring-white"
-                      />
-                    ) : (
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-elevarm-info-100 font-bold text-elevarm-cobalt ring-2 ring-white">
-                        {author.charAt(0)}
-                      </span>
-                    )}
+                    <ForumAvatar name={author} url={post.user?.avatarUrl} />
                     <div>
                       <p className="font-semibold text-elevarm-black">{author}</p>
                       <p className="text-sm text-elevarm-grey">{formatForumDate(post.createdAt)}</p>
