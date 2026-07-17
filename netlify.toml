@@ -10,3 +10,10 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Keep one canonical host (www) — avoids CORS/cookie quirks between apex and www.
+[[redirects]]
+  from = "https://bisaagri.com/*"
+  to = "https://www.bisaagri.com/:splat"
+  status = 301
+  force = true
