@@ -1,0 +1,12 @@
+# Netlify: NODE_ENV=production skips npm devDependencies.
+# Keep TypeScript/Tailwind in dependencies; also install devDeps for lint tooling.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--include=dev"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
