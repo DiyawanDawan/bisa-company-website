@@ -1,10 +1,7 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { MOTION_EASE } from '@/lib/motion';
 
 export type Testimonial = {
   quote: string;
@@ -14,38 +11,31 @@ export type Testimonial = {
   imageFit?: 'cover' | 'contain';
 };
 
-function wrapIndex(index: number, length: number) {
-  return ((index % length) + length) % length;
-}
+const CARD_WIDTH_MOBILE = 260;
+const CARD_WIDTH_DESKTOP = 340;
+const GAP = 20;
+/** Pixels per second — slow continuous drift. */
+const SPEED = 26;
 
-function cardMotion(offset: number) {
-  const abs = Math.abs(offset);
-  if (abs === 0) {
-    return { scale: 1.1, opacity: 1, y: 0, zIndex: 30 };
-  }
-  if (abs === 1) {
-    return { scale: 0.86, opacity: 0.7, y: 20, zIndex: 20 };
-  }
-  return { scale: 0.72, opacity: 0.38, y: 36, zIndex: 10 };
-}
+const BASE_CARD_CLASS =
+  'testimonial-card shrink-0 rounded-2xl overflow-hidden flex flex-col bg-[#135122] shadow-md origin-center';
 
-/** Horizontal spacing by breakpoint (approx card width + gap). */
-function useCardStep() {
-  const [step, setStep] = useState(200);
+const CENTER_CARD_CLASS =
+  'shadow-[0_28px_60px_rgba(19,81,34,0.32)] ring-2 ring-[#1A7A34]/30';
 
-  useEffect(() => {
-    const update = () => {
-      const width = window.innerWidth;
-      if (width < 640) setStep(155);
-      else if (width < 768) setStep(190);
-      else setStep(220);
-    };
-    update();
-    window.addEventListener('resize', update, { passive: true });
-    return () => window.removeEventListener('resize', update);
-  }, []);
+function applyCardStyle(card: HTMLElement, distancePx: number, cardWidth: number) {
+  const maxDist = cardWidth * 1.35;
+  const t = Math.min(1, Math.abs(distancePx) / maxDist);
+  const scale = Math.max(0.78, 1.12 - t * 0.32);
+  const opacity = Math.max(0.4, 1 - t * 0.55);
+  const nearCenter = scale > 1.02;
 
-  return step;
+  card.style.transform = `scale(${scale})`;
+  card.style.opacity = String(opacity);
+  card.style.zIndex = String(Math.round(scale * 100));
+  card.className = nearCenter
+    ? `${BASE_CARD_CLASS} ${CENTER_CARD_CLASS}`
+    : BASE_CARD_CLASS;
 }
 
 export default function TestimonialMarquee({
@@ -53,65 +43,100 @@ export default function TestimonialMarquee({
 }: {
   testimonials: Testimonial[];
 }) {
-  const count = testimonials.length;
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const step = useCardStep();
+  const trackRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
+  const pausedRef = useRef(false);
+  const rafRef = useRef<number | null>(null);
+  const lastTsRef = useRef<number | null>(null);
+  const [cardWidth, setCardWidth] = useState(CARD_WIDTH_DESKTOP);
 
-  const go = useCallback(
-    (dir: 1 | -1) => {
-      setActive((current) => wrapIndex(current + dir, count));
-    },
-    [count],
-  );
+  const loop = [...testimonials, ...testimonials, ...testimonials];
 
   useEffect(() => {
-    if (paused || count <= 1) return;
-    const id = window.setInterval(() => go(1), 4200);
-    return () => window.clearInterval(id);
-  }, [paused, count, go]);
+    const updateWidth = () => {
+      setCardWidth(window.innerWidth < 640 ? CARD_WIDTH_MOBILE : CARD_WIDTH_DESKTOP);
+    };
+    updateWidth();
+    window.addEventListener('resize', updateWidth, { passive: true });
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
 
-  if (count === 0) return null;
+  useEffect(() => {
+    const track = trackRef.current;
+    const viewport = viewportRef.current;
+    if (!track || !viewport || testimonials.length === 0) return;
 
-  const visibleOffsets =
-    count === 1 ? [0] : count === 2 ? [-1, 0] : [-2, -1, 0, 1, 2];
+    const segmentWidth = testimonials.length * (cardWidth + GAP);
+
+    const tick = (ts: number) => {
+      if (lastTsRef.current == null) lastTsRef.current = ts;
+      const dt = Math.min(64, ts - lastTsRef.current) / 1000;
+      lastTsRef.current = ts;
+
+      if (!pausedRef.current) {
+        offsetRef.current += SPEED * dt;
+        if (offsetRef.current >= segmentWidth) {
+          offsetRef.current -= segmentWidth;
+        }
+      }
+
+      track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
+
+      const viewportRect = viewport.getBoundingClientRect();
+      const centerX = viewportRect.left + viewportRect.width / 2;
+      const cards = track.querySelectorAll<HTMLElement>('[data-testimonial-card]');
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        applyCardStyle(card, cardCenter - centerX, cardWidth);
+      });
+
+      rafRef.current = window.requestAnimationFrame(tick);
+    };
+
+    rafRef.current = window.requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current != null) window.cancelAnimationFrame(rafRef.current);
+      lastTsRef.current = null;
+    };
+  }, [testimonials.length, cardWidth]);
+
+  if (testimonials.length === 0) return null;
 
   return (
     <div
-      className="relative select-none"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
+      ref={viewportRef}
+      className="relative overflow-hidden py-8 -mx-4 sm:mx-0"
+      onMouseEnter={() => {
+        pausedRef.current = true;
+      }}
+      onMouseLeave={() => {
+        pausedRef.current = false;
+      }}
+      onFocusCapture={() => {
+        pausedRef.current = true;
+      }}
+      onBlurCapture={() => {
+        pausedRef.current = false;
+      }}
     >
-      <div className="relative mx-auto flex h-[420px] sm:h-[460px] items-center justify-center overflow-x-clip overflow-y-visible px-2">
-        {visibleOffsets.map((offset) => {
-          const index = wrapIndex(active + offset, count);
-          const item = testimonials[index];
-          const fit = item.imageFit ?? 'cover';
-          const motionStyle = cardMotion(offset);
-          const isCenter = offset === 0;
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 sm:w-16 bg-gradient-to-r from-white to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 sm:w-16 bg-gradient-to-l from-white to-transparent" />
 
+      <div
+        ref={trackRef}
+        className="flex w-max items-center gap-5 will-change-transform"
+        style={{ transform: 'translate3d(0,0,0)' }}
+      >
+        {loop.map((item, idx) => {
+          const fit = item.imageFit ?? 'cover';
           return (
-            <motion.article
-              key={`slot-${offset}`}
-              layout={false}
-              className={`absolute w-[250px] sm:w-[300px] md:w-[340px] rounded-2xl overflow-hidden flex flex-col bg-[#135122] will-change-transform ${
-                isCenter
-                  ? 'shadow-[0_28px_60px_rgba(19,81,34,0.35)] ring-2 ring-[#1A7A34]/35'
-                  : 'shadow-md'
-              }`}
-              style={{ zIndex: motionStyle.zIndex }}
-              initial={false}
-              animate={{
-                x: offset * step,
-                scale: motionStyle.scale,
-                opacity: motionStyle.opacity,
-                y: motionStyle.y,
-              }}
-              transition={{ duration: 0.45, ease: MOTION_EASE }}
-              role={isCenter ? 'group' : 'presentation'}
-              aria-hidden={!isCenter}
+            <article
+              key={`${item.author}-${idx}`}
+              data-testimonial-card
+              className={BASE_CARD_CLASS}
+              style={{ width: cardWidth }}
             >
               <div className="relative aspect-[4/3] w-full bg-[#0f3d1a]">
                 <Image
@@ -123,8 +148,7 @@ export default function TestimonialMarquee({
                       ? 'object-contain object-center p-3'
                       : 'object-cover object-center'
                   }
-                  sizes="340px"
-                  priority={isCenter}
+                  sizes={`${cardWidth}px`}
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#135122]/85 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -137,53 +161,13 @@ export default function TestimonialMarquee({
                 </div>
               </div>
               <div className="flex flex-grow flex-col gap-3 p-5">
-                <p
-                  className={`leading-relaxed text-elevarm-zinc ${
-                    isCenter
-                      ? 'text-sm sm:text-[15px]'
-                      : 'line-clamp-4 text-sm'
-                  }`}
-                >
+                <p className="text-sm leading-relaxed text-elevarm-zinc line-clamp-5">
                   &ldquo;{item.quote}&rdquo;
                 </p>
               </div>
-            </motion.article>
+            </article>
           );
         })}
-      </div>
-
-      <div className="mt-6 flex items-center justify-center gap-3">
-        <button
-          type="button"
-          onClick={() => go(-1)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-elevarm-black shadow-sm transition hover:border-elevarm-accent hover:text-elevarm-accent"
-          aria-label="Testimoni sebelumnya"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </button>
-        <div className="flex items-center gap-1.5">
-          {testimonials.map((item, idx) => (
-            <button
-              key={item.author}
-              type="button"
-              onClick={() => setActive(idx)}
-              className={`h-2 rounded-full transition-all ${
-                idx === active
-                  ? 'w-6 bg-elevarm-accent'
-                  : 'w-2 bg-slate-300 hover:bg-slate-400'
-              }`}
-              aria-label={`Lihat testimoni ${item.author}`}
-            />
-          ))}
-        </div>
-        <button
-          type="button"
-          onClick={() => go(1)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-elevarm-black shadow-sm transition hover:border-elevarm-accent hover:text-elevarm-accent"
-          aria-label="Testimoni berikutnya"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </button>
       </div>
     </div>
   );
