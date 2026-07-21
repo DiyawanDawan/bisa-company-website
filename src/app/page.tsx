@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
+import MarketplaceLayers from '@/components/MarketplaceLayers';
 import Principles from '@/components/Principles';
 import Products from '@/components/Products';
 import ImpactStats from '@/components/ImpactStats';
@@ -16,6 +17,9 @@ export default function Home() {
       
       {/* Services Grid */}
       <Services />
+      
+      {/* Marketplace 3 Layer Flow */}
+      <MarketplaceLayers />
       
       {/* Principles Pillars */}
       <Principles />
