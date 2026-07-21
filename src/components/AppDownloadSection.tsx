@@ -66,7 +66,7 @@ export default function AppDownloadSection({
     return (
       <div
         id={id}
-        className={`rounded-2xl border border-elevarm-info-100 bg-gradient-to-br from-[#f0fdf4] to-white overflow-hidden ${className}`}
+        className={`rounded-2xl bg-gradient-to-br from-[#f0fdf4] to-white overflow-hidden ${className}`}
       >
         <div className="flex flex-col sm:flex-row sm:items-center gap-5 p-5 sm:p-6">
           <div className="flex justify-center sm:justify-start order-2 sm:order-1">

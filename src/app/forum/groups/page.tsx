@@ -73,12 +73,12 @@ export default function ForumGroupsPage() {
 
           {loading && <p className="text-center text-elevarm-grey py-12">Memuat grup...</p>}
           {error && !loading && (
-            <div className="rounded-xl border border-amber-200 bg-amber-50 p-6 text-center text-sm text-amber-900">
+            <div className="rounded-xl bg-amber-50 p-6 text-center text-sm text-amber-900">
               {error}
             </div>
           )}
           {!loading && !error && groups.length === 0 && (
-            <div className="rounded-xl border border-elevarm-neutral-100 bg-elevarm-neutral p-8 text-center space-y-3">
+            <div className="rounded-xl bg-elevarm-neutral p-8 text-center space-y-3">
               <p className="text-elevarm-grey">Belum ada grup publik tersedia saat ini.</p>
             </div>
           )}

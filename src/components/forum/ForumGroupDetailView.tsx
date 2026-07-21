@@ -186,7 +186,7 @@ export default function ForumGroupDetailView({ id }: { id: string }) {
           </div>
 
           {posts.length === 0 ? (
-            <div className="rounded-xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center space-y-3 shadow-sm">
+            <div className="rounded-xl bg-white px-6 py-12 text-center space-y-3 shadow-sm">
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-elevarm-info-100 text-elevarm-cobalt">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
                   <path

@@ -46,7 +46,7 @@ export default function ForumPostCard({ post }: { post: ForumPost }) {
   return (
     <Link
       href={getForumPostPath(post.id)}
-      className="group flex overflow-hidden rounded-xl border border-slate-200/90 bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06)] transition-all duration-200 hover:border-elevarm-cobalt/30 hover:shadow-[0_8px_24px_rgba(15,23,42,0.12)]"
+      className="group flex overflow-hidden rounded-xl bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06)] transition-all duration-200 hover:shadow-[0_8px_24px_rgba(15,23,42,0.12)]"
     >
       <VoteColumn score={post.upvotes} />
 

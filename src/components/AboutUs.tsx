@@ -13,7 +13,7 @@ const highlights = [
   },
   {
     title: 'AI & IoT Pro',
-    desc: 'Prediksi grade biochar dan monitoring suhu tungku untuk produksi optimal.',
+    desc: 'Prediksi grade biochar gratis, plus monitoring suhu tungku real-time lewat langganan IoT Pro.',
     image: bisaAssets.app.impact,
   },
   {
@@ -24,7 +24,7 @@ const highlights = [
 ];
 
 const teamStats = [
-  { value: '10–20', label: 'Petani Binaan Pilot Lombok Tengah' },
+  { value: '10–20', label: 'Petani Binaan Pilot Lombok, Nusa Tenggara Barat' },
   { value: '3', label: 'Lapisan Marketplace — Limbah, Biochar, Panen Organik' },
   { value: '94%', label: 'Petani Survei Tertarik Platform BISA' },
 ];
@@ -56,7 +56,7 @@ export default function AboutUs() {
 
         <StaggerReveal className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-10 md:mb-14" stagger={0.08}>
           {highlights.map((item) => (
-            <StaggerItem key={item.title} className="flex flex-col rounded-xl overflow-hidden border border-elevarm-neutral-100 bg-elevarm-neutral/30">
+            <StaggerItem key={item.title} className="flex flex-col rounded-xl overflow-hidden bg-elevarm-neutral/30">
               <div className="relative aspect-[16/10] w-full bg-[#135122]">
                 <Image
                   src={item.image}

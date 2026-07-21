@@ -40,7 +40,7 @@ function DashboardCard({
 }) {
   return (
     <div
-      className={`relative bg-white border border-slate-200/90 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 ${className}`}
+      className={`relative bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 ${className}`}
     >
       <div className="px-4 sm:px-5 pt-4 pb-3 border-b border-slate-100 flex items-center gap-2.5">
         <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-elevarm-cobalt/10 text-elevarm-cobalt">

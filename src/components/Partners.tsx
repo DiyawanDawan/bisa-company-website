@@ -29,7 +29,7 @@ const partnerLogos = [
 
 function PartnerLogo({ logo }: { logo: string }) {
   return (
-    <div className="flex h-20 sm:h-24 w-36 sm:w-40 shrink-0 items-center justify-center rounded-lg border border-elevarm-neutral-100 bg-white px-3 py-2 hover:border-elevarm-neutral hover:shadow-sm transition-all duration-200">
+    <div className="flex h-20 sm:h-24 w-36 sm:w-40 shrink-0 items-center justify-center rounded-lg bg-white px-3 py-2 hover:shadow-sm transition-all duration-200">
       <Image
         src={`/images/partners/${logo}`}
         alt="Partner logo"

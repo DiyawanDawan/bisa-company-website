@@ -54,7 +54,7 @@ export default function FAQPage() {
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
-              <StaggerItem key={faq.q} className="border border-elevarm-neutral-100 rounded-xl overflow-hidden">
+              <StaggerItem key={faq.q} className="rounded-xl overflow-hidden">
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : idx)}

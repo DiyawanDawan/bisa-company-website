@@ -16,7 +16,7 @@ function ImpactCard({
   image: string;
 }) {
   return (
-    <article className="w-[260px] sm:w-[280px] lg:w-[300px] shrink-0 snap-start flex flex-col rounded-xl overflow-hidden bg-[#1a4823] border border-white/10">
+    <article className="w-[260px] sm:w-[280px] lg:w-[300px] shrink-0 snap-start flex flex-col rounded-xl overflow-hidden bg-[#1a4823]">
       <div className="relative aspect-[4/3] w-full">
         <Image
           src={image}

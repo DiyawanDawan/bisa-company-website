@@ -90,7 +90,7 @@ export default function ImpactPage() {
 
           {/* Sibling of ScrollReveal — nested whileInView kept cards stuck at opacity 0 */}
           <StaggerReveal
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#135122]/12 border border-[#135122]/12 rounded-xl overflow-hidden shadow-sm"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[#135122]/12 rounded-xl overflow-hidden shadow-sm"
             stagger={0.06}
           >
             {pilotYearOneTargets.map((target) => (
@@ -117,7 +117,7 @@ export default function ImpactPage() {
             {impactPillars.map((pillar) => (
               <StaggerItem
                 key={pillar.title}
-                className="bg-white rounded-2xl overflow-hidden border border-[#135122]/10
+                className="bg-white rounded-2xl overflow-hidden
                   shadow-[0_12px_28px_-6px_rgba(19,81,34,0.26),0_6px_14px_-4px_rgba(0,0,0,0.1)]"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-elevarm-neutral">

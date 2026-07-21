@@ -95,7 +95,7 @@ export default function ForumPage() {
               {forumFeatures.map((f) => (
                 <div
                   key={f.title}
-                  className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-4"
+                  className="rounded-xl bg-white/10 backdrop-blur-sm p-4"
                 >
                   <p className="text-sm font-bold text-white">{f.title}</p>
                   <p className="text-xs text-white/80 mt-1 leading-relaxed">{f.desc}</p>
@@ -131,12 +131,12 @@ export default function ForumPage() {
               <p className="text-center text-elevarm-grey py-8">Memuat grup...</p>
             )}
             {groupsError && !groupsLoading && (
-              <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 text-center">
+              <div className="rounded-xl bg-amber-50 p-4 text-sm text-amber-900 text-center">
                 {groupsError} Coba muat ulang halaman. Jika masalah berlanjut, hubungi tim BISA.
               </div>
             )}
             {!groupsLoading && !groupsError && groups.length === 0 && (
-              <div className="rounded-xl border border-elevarm-neutral-100 bg-elevarm-neutral p-6 text-center space-y-2">
+              <div className="rounded-xl bg-elevarm-neutral p-6 text-center space-y-2">
                 <p className="text-elevarm-grey text-sm">Belum ada grup publik tersedia saat ini.</p>
               </div>
             )}
@@ -182,7 +182,7 @@ export default function ForumPage() {
             <p className="text-center text-elevarm-grey py-16">Memuat diskusi forum...</p>
           )}
           {error && !loading && (
-            <div className="rounded-xl border border-amber-200 bg-amber-50 p-6 text-center space-y-2">
+            <div className="rounded-xl bg-amber-50 p-6 text-center space-y-2">
               <p className="text-sm font-semibold text-amber-900">{error}</p>
               <p className="text-xs text-amber-800">
                 Coba muat ulang halaman. Diskusi forum membutuhkan koneksi ke server BISA.

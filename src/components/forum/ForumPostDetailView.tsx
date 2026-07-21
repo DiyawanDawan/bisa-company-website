@@ -102,7 +102,7 @@ export default function ForumPostDetailView({ id }: { id: string }) {
           </Link>
 
           <ScrollReveal>
-            <div className="overflow-hidden rounded-xl border border-slate-200/90 bg-white shadow-[0_12px_28px_-6px_rgba(15,23,42,0.14),0_6px_14px_-4px_rgba(0,0,0,0.08)]">
+            <div className="overflow-hidden rounded-xl bg-white shadow-[0_12px_28px_-6px_rgba(15,23,42,0.14),0_6px_14px_-4px_rgba(0,0,0,0.08)]">
               <div className="flex">
                 <VoteColumn score={post.upvotes} />
                 <div className="min-w-0 flex-1 p-5 sm:p-6 space-y-5">

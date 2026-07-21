@@ -39,19 +39,19 @@ export const servicesContent: ServiceContent[] = [
   {
     id: 'ai-iot',
     title: 'AI Prediksi & IoT Pro',
-    tagline: 'Grade biochar tanpa uji lab',
+    tagline: 'AI gratis, IoT berlangganan',
     shortDesc:
-      'Model AI memprediksi grade biochar (A/B) dari jenis biomassa, suhu, dan waktu pembakaran. Fitur Pro memantau suhu tungku real-time — atau cukup foto termometer.',
+      'Model AI memprediksi grade biochar (A/B) dari jenis biomassa, suhu, dan waktu pembakaran — gratis untuk semua. Langganan Pro khusus untuk monitoring IoT suhu tungku real-time.',
     intro: [
       'Kualitas biochar tidak konsisten menjadi hambatan adopsi petani. BISA menggunakan model open source (XGBoost/Random Forest) dengan dataset lokal dari BI, BRIN, IPB, dan data pilot Lombok Tengah.',
-      'Petani memasukkan jenis biomassa, suhu, dan lama pembakaran — sistem memprediksi grade biochar serta merekomendasikan dosis pemupukan. Tanpa biaya uji lab mahal.',
-      'Fitur Pro IoT: sensor MAX6675 + ESP32 memantau suhu tungku 400–450°C (pirolisis standar BRIN). Bagi petani tanpa sensor, upload foto termometer dan AI membaca suhunya otomatis sebagai fallback.',
+      'Petani memasukkan jenis biomassa, suhu, dan lama pembakaran — sistem memprediksi grade biochar serta merekomendasikan dosis pemupukan. Tanpa biaya uji lab mahal. Prediksi AI tersedia tanpa langganan Pro.',
+      'IoT Pro (berlangganan): sensor MAX6675 + ESP32 memantau suhu tungku 400–450°C (pirolisis standar BRIN). Bagi petani tanpa sensor, upload foto termometer dan AI membaca suhunya otomatis sebagai fallback gratis.',
     ],
     bulletsLabel: 'Kemampuan AI & IoT BISA:',
     bullets: [
-      'Prediksi grade biochar A/B dengan akurasi target MAPE <10%',
+      'Prediksi grade biochar A/B (gratis) dengan akurasi target MAPE <10%',
       'Rekomendasi dosis pemupukan berbasis data biomassa lokal',
-      'Monitoring suhu tungku real-time (Pro) atau via foto termometer',
+      'Monitoring suhu tungku real-time khusus IoT Pro — atau foto termometer gratis',
     ],
     image: bisaAssets.product.biochar,
     images: [
