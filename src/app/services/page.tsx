@@ -2,6 +2,7 @@
 
 import React from 'react';
 import ServiceSection from '@/components/ServiceSection';
+import MarketplaceLayers from '@/components/MarketplaceLayers';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { servicesContent } from '@/data/servicesContent';
 
@@ -27,7 +28,11 @@ export default function ServicesPage() {
 
       {/* Service sections — alternating white / navy */}
       {servicesContent.map((service, index) => (
-        <ServiceSection key={service.id} service={service} index={index} />
+        <React.Fragment key={service.id}>
+          <ServiceSection service={service} index={index} />
+          {/* Marketplace tiga layer — reuse section setelah service marketplace */}
+          {service.id === 'marketplace' && <MarketplaceLayers />}
+        </React.Fragment>
       ))}
     </div>
   );

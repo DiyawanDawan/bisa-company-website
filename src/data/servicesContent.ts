@@ -21,14 +21,13 @@ export const servicesContent: ServiceContent[] = [
       'Satu aplikasi mobile B2B untuk jual-beli limbah biomassa, biochar, dan hasil panen organik bersertifikat — menutup siklus ekonomi sirkular dari desa ke industri.',
     intro: [
       'Di Lombok Tengah saja, 84.906 ton sekam padi dan puluhan ribu ton limbah kelapa serta tongkol jagung dibakar setiap tahun. Potensi ekonomi hilang karena belum ada saluran terintegrasi.',
-      'BISA marketplace hadir dalam tiga lapisan: Layer 1 — petani menjual sekam, tongkol, dan tempurung kelapa ke pengepul atau industri. Layer 2 — jual-beli biochar sebagai pupuk organik alternatif saat pupuk bersubsidi kurang dari 10% tersalur. Layer 3 — hasil panen organik bebas kimia dengan sertifikasi BISA Organic untuk pasar premium.',
       'Negosiasi harga, pesanan langsung, dan matchmaking pembeli terdekat membuat transaksi B2B petani-industri-hotel berjalan dalam satu ekosistem.',
     ],
-    bulletsLabel: 'Komoditas di marketplace BISA:',
+    bulletsLabel: 'Nilai tiap lapisan marketplace:',
     bullets: [
-      'Limbah biomassa — sekam padi, tongkol jagung, tempurung kelapa',
-      'Biochar grade A/B — pupuk organik alternatif berkualitas terstandar',
-      'Hasil panen organik bersertifikat BISA Organic',
+      'Limbah biomassa — keuntungan 100% dari sekam, tongkol, dan tempurung kelapa',
+      'Biochar grade A/B — pupuk organik alternatif, hasil panen naik hingga 6%',
+      'Panen organik bersertifikat BISA Organic — akses pasar premium',
     ],
     image: bisaAssets.product.biomass,
     images: [

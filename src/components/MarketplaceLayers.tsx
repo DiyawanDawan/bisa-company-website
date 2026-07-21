@@ -9,22 +9,22 @@ const layersList = [
     layer: 'Layer 1',
     Icon: Wheat,
     title: 'Limbah Biomassa',
-    desc: 'Petani menjual sekam padi, tongkol jagung, dan tempurung kelapa ke pengepul atau industri — limbah yang biasanya dibakar kini punya nilai ekonomi.',
-    highlight: 'Sekam · Tongkol · Tempurung Kelapa',
+    desc: 'Petani menjual sekam padi, tongkol jagung, dan tempurung kelapa ke pengepul atau industri — limbah yang biasanya dibakar kini jadi pendapatan tambahan.',
+    highlight: 'Keuntungan 100% dari limbah yang semula dibuang',
   },
   {
     layer: 'Layer 2',
     Icon: Flame,
     title: 'Biochar Pupuk Organik',
     desc: 'Jual-beli biochar sebagai pupuk organik alternatif di saat pupuk bersubsidi tersalur kurang dari 10% — lengkap dengan grade kualitas A/B/C.',
-    highlight: 'Solusi saat pupuk subsidi <10% tersalur',
+    highlight: 'Peningkatan hasil panen hingga 6%',
   },
   {
     layer: 'Layer 3',
     Icon: BadgeCheck,
     title: 'Panen Organik Premium',
     desc: 'Hasil panen bebas kimia dengan sertifikasi BISA Organic dijual ke pasar premium — nilai jual lebih tinggi kembali ke petani.',
-    highlight: 'Sertifikasi BISA Organic',
+    highlight: 'Pasar premium bersertifikat BISA Organic',
   },
 ];
 
