@@ -8,6 +8,7 @@ import ImpactStats from '@/components/ImpactStats';
 import AboutUs from '@/components/AboutUs';
 import AppDownloadSection from '@/components/AppDownloadSection';
 import Partners from '@/components/Partners';
+import MarketHomeTeaser from '@/components/market/MarketHomeTeaser';
 
 export default function Home() {
   return (
@@ -17,6 +18,9 @@ export default function Home() {
       
       {/* Services Grid */}
       <Services />
+
+      {/* Market Intelligence teaser — TradingView / CMC style */}
+      <MarketHomeTeaser />
       
       {/* Marketplace 3 Layer Flow */}
       <MarketplaceLayers />

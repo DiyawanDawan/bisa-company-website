@@ -52,6 +52,7 @@ export default function Footer() {
     { name: 'Services', href: '/services' },
     { name: 'Products', href: '/#products' },
     { name: 'Forum', href: '/forum' },
+    { name: 'Market Intelligence', href: '/market' },
     { name: 'Impact', href: '/impact' },
     { name: 'GIS Supply Demand', href: '/gis/supply-demand' },
     { name: 'About Us', href: '/#about-us' },

@@ -10,6 +10,7 @@ const navLinks = [
   { name: 'Services', href: '/services' },
   { name: 'Products', href: '/#products' },
   { name: 'Forum', href: '/forum' },
+  { name: 'Market', href: '/market' },
   { name: 'Impact', href: '/impact' },
   { name: 'GIS', href: '/gis/supply-demand' },
   { name: 'About Us', href: '/#about-us' },
@@ -21,6 +22,7 @@ function getIsActive(href: string, pathname: string, hash: string) {
   if (href === '/#about-us') return pathname === '/' && hash === '#about-us';
   if (href === '/blog') return pathname.startsWith('/blog');
   if (href === '/forum') return pathname.startsWith('/forum');
+  if (href === '/market') return pathname.startsWith('/market');
   if (href === '/services') return pathname === '/services';
   if (href === '/impact') return pathname === '/impact';
   if (href === '/gis/supply-demand') return pathname.startsWith('/gis');
