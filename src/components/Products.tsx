@@ -175,7 +175,7 @@ export default function Products() {
             <div
               aria-hidden
               className="absolute right-4 sm:right-10 top-1/2 -translate-y-1/2 w-[52%] sm:w-[48%] h-[88%] bg-elevarm-accent rounded-[32px] sm:rounded-[40px] shadow-[0_24px_60px_rgba(19,81,34,0.22)]"
-              style={{ transform: 'perspective(1200px) rotateY(-12deg) rotateX(4deg) translateZ(-40px)' }}
+              style={{ transform: 'perspective(1200px) rotateY(12deg) rotateX(4deg) translateZ(-40px)' }}
             />
 
             <div className="relative z-10 w-full px-4 sm:px-0">
@@ -185,6 +185,7 @@ export default function Products() {
                 alt={`Screenshot aplikasi BISA — ${activeProduct.title}`}
                 animateKey={activeProduct.title}
                 priority={activeIndex === 0}
+                tilt={{ rotateY: 18, rotateX: 8, rotateZ: 4 }}
               />
             </div>
           </ScrollReveal>
