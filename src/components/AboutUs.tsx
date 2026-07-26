@@ -101,7 +101,7 @@ export default function AboutUs() {
       </div>
 
       {/* Team */}
-      <ScrollReveal className="pt-14 sm:pt-20" variant="slideUp">
+      <ScrollReveal className="pt-14 sm:pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 md:mb-14">
             <span className="text-sm font-bold text-elevarm-cobalt uppercase tracking-wider">
