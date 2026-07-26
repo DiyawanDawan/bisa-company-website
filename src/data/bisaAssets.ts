@@ -2,26 +2,20 @@
 export const bisaBrand = {
   name: 'BISA',
   fullName: 'Biochar Indonesia Sirkular Agriculture',
-  tagline: 'Platform ekonomi sirkular biomassa pertanian Indonesia',
-  email: 'hello@bisa.id',
+  tagline: 'Sustainable Farming Practices for Indonesian Farmers',
+  email: 'info@bisaagri.com',
   location: 'Lombok Tengah, Nusa Tenggara Barat, Indonesia',
   playStoreUrl: 'https://drive.google.com/uc?export=download&id=1Qzdbr6QMGaMnb6hg9OVvIw9VHgJL6V-M',
   adminDemoUrl: 'https://office.bisaagri.com/signin?redirect=%2F',
   social: {
-    instagram: 'https://instagram.com/bisa.id',
-    facebook: 'https://facebook.com/bisa.id',
-    linkedin: 'https://linkedin.com/company/bisa-id',
-    youtube: 'https://youtube.com/@bisa.id',
-    tiktok: 'https://tiktok.com/@bisa.',
+    instagram: 'https://www.instagram.com/bisaagri/',
+    youtube: 'https://www.youtube.com/@BisaAgri',
   },
 } as const;
 
 export const bisaSocialLinks = [
   { name: 'Instagram', href: bisaBrand.social.instagram, label: 'Instagram BISA' },
-  { name: 'Facebook', href: bisaBrand.social.facebook, label: 'Facebook BISA' },
-  { name: 'LinkedIn', href: bisaBrand.social.linkedin, label: 'LinkedIn BISA' },
   { name: 'YouTube', href: bisaBrand.social.youtube, label: 'YouTube BISA' },
-  { name: 'TikTok', href: bisaBrand.social.tiktok, label: 'TikTok BISA' },
 ] as const;
 
 export const bisaAssets = {
@@ -31,7 +25,11 @@ export const bisaAssets = {
   banner: {
     marketplace: '/assets/img/bisa/banner-marketplace.png',
     biochar: '/assets/img/bisa/banner-biochar.png',
-    organic: '/assets/img/bisa/banner-biochar.png',
+    organic: '/images/hasil_pananen.jpg',
+    services: '/images/panag_laptop_disawah.jpg',
+    blog: '/images/hero_inputs.png',
+    forum: '/images/Dron_menyiaram_padi.jpg',
+    impact: '/images/Petani_siram_tanaman.jpg',
   },
 
   app: {
@@ -43,7 +41,7 @@ export const bisaAssets = {
 
   /** Screenshot aplikasi (mockup perangkat) — public/images */
   screenshots: {
-    main: '/images/AI-Prediction_fecture.webp',
+    main: '/images/AI-marketplacePng.webp',
     marketplace: '/images/Listing-produk-marketplace-b2b.webp',
     forum: '/images/Iot-dasboard.png',
     marketplacePng: '/images/Iot-dasboard.png',
@@ -52,7 +50,7 @@ export const bisaAssets = {
   product: {
     biomass: '/images/hero_supply.png',
     biochar: '/images/hero_inputs.png',
-    organic: '/images/hero_cultivation.png',
+    organic: '/images/hasil_pananen.jpg',
     appMockup: '/assets/img/bisa/app-marketplace.jpg',
   },
 } as const;

@@ -23,8 +23,8 @@ const slides = [
     title: 'Panen Organik Premium',
     description:
       'Hasil tani organik bersertifikat BISA Organic — harga premium, pasar hotel Mandalika.',
-    bgImage: bisaAssets.app.marketplace,
-    position: 'center top',
+    bgImage: bisaAssets.banner.organic,
+    position: 'center',
   },
 ];
 

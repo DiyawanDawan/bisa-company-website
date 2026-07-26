@@ -9,9 +9,13 @@ import { servicesContent } from '@/data/servicesContent';
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero — dark navy */}
-      <section className="bg-gradient-to-br from-[#135122] via-[#1a4823] to-[#0f3d1a] text-white pt-header pb-12 sm:pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero */}
+      <section
+        className="relative text-white pt-header pb-20 sm:pb-28 overflow-hidden bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/panag_laptop_disawah.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#135122]/92 via-[#1a4823]/88 to-[#0f3d1a]/92" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="max-w-3xl space-y-4">
             <span className="text-sm font-bold text-elevarm-accent uppercase tracking-wider">
               Platform BISA

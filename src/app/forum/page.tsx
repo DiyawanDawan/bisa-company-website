@@ -71,8 +71,12 @@ export default function ForumPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <section className="bg-gradient-to-br from-[#135122] via-[#1a4823] to-[#0f3d1a] text-white pt-header pb-12 sm:pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section
+        className="relative text-white pt-header pb-12 sm:pb-16 overflow-hidden bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/Dron_menyiaram_padi.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#135122]/94 via-[#1a4823]/90 to-[#0f3d1a]/94" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <ScrollReveal className="space-y-4 max-w-2xl">
               <span className="text-sm font-bold text-elevarm-accent uppercase tracking-wider">

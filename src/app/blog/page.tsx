@@ -78,8 +78,12 @@ function BlogIndexContent() {
   return (
     <div className="min-h-screen bg-white">
       {!activeTag && (
-        <section className="bg-gradient-to-br from-[#135122] via-[#1a4823] to-[#0f3d1a] text-white pt-header pb-12 sm:pb-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section
+          className="relative text-white pt-header pb-12 sm:pb-16 overflow-hidden bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/hero_inputs.png')" }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-[#135122]/92 via-[#1a4823]/88 to-[#0f3d1a]/95" />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <ScrollReveal variant="fadeRight" className="space-y-5 order-2 lg:order-1">
                 <span className="text-sm font-bold text-elevarm-accent uppercase tracking-wider">

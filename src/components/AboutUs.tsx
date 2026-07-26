@@ -29,6 +29,15 @@ const teamStats = [
   { value: '94%', label: 'Petani Survei Tertarik Platform BISA' },
 ];
 
+const teamMembers = [
+  {
+    name: 'DIAYAWAN',
+    role: 'Founder & CEO',
+    image: '/images/team.png',
+    bio: 'Memimpin BISA dengan visi ekonomi sirkular untuk pertanian Indonesia — menghubungkan petani, industri, dan pasar premium dalam satu ekosistem digital.',
+  },
+];
+
 export default function AboutUs() {
   return (
     <section id="about-us" className="scroll-mt-header py-10 sm:py-16 bg-white">
@@ -90,6 +99,44 @@ export default function AboutUs() {
         </ScrollReveal>
 
       </div>
+
+      {/* Team */}
+      <ScrollReveal className="pt-14 sm:pt-20" variant="slideUp">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 md:mb-14">
+            <span className="text-sm font-bold text-elevarm-cobalt uppercase tracking-wider">
+              Tim Kami
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-elevarm-black font-display tracking-tight mt-2">
+              Di Balik BISA
+            </h2>
+          </div>
+
+          <div className="flex justify-center">
+            <StaggerReveal className="max-w-sm" stagger={0.1}>
+              {teamMembers.map((member) => (
+                <StaggerItem key={member.name} variant="scaleIn">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-64 h-80 sm:w-72 sm:h-88 md:w-80 md:h-96 rounded-3xl overflow-hidden shadow-xl relative mb-6">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover"
+                        sizes="320px"
+                      />
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-bold text-elevarm-black font-display">{member.name}</h3>
+                    <p className="text-sm font-semibold text-elevarm-cobalt mt-2">{member.role}</p>
+                    <p className="text-sm text-elevarm-grey leading-relaxed mt-3 max-w-xs">{member.bio}</p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerReveal>
+          </div>
+        </div>
+      </ScrollReveal>
+
     </section>
   );
 }

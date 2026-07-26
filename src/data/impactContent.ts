@@ -22,6 +22,7 @@ export type PilotTarget = {
   detail: string;
   counter: CounterConfig;
   icon: PilotTargetIcon;
+  image: string;
 };
 
 export const impactHeroCopy = {
@@ -36,8 +37,8 @@ export const impactHeroCopy = {
 };
 
 export const impactHeroVisual = {
-  image: bisaAssets.banner.marketplace,
-  imageAlt: 'Banner BISA — marketplace limbah biomassa dan biochar',
+  image: bisaAssets.banner.impact,
+  imageAlt: 'Petani menyiram tanaman — dampak langsung pertanian berkelanjutan BISA',
   caption: 'Survei awal · 16 petani Lombok Tengah & Timur',
   surveyStats: [
     { label: 'Tertarik jual limbah', counter: { end: 94, suffix: '%' } },
@@ -53,6 +54,7 @@ export const pilotYearOneTargets: PilotTarget[] = [
       'Sekam, tongkol jagung, dan tempurung kelapa — setara ~12% dari potensi 84.906 ton sekam/tahun di Lombok Tengah yang selama ini dibakar.',
     counter: { end: 10000, suffix: ' ton' },
     icon: 'biomass',
+    image: '/images/hero_supply.png',
   },
   {
     label: 'Nilai transaksi biochar',
@@ -60,6 +62,7 @@ export const pilotYearOneTargets: PilotTarget[] = [
       'Target 3.000 ton biochar terjual (asumsi Rp3.500/kg sesuai preferensi harga mayoritas petani dalam survei awal).',
     counter: { end: 10.5, prefix: 'Rp', suffix: ' M', decimals: 1 },
     icon: 'transaction',
+    image: '/images/hero_inputs.png',
   },
   {
     label: 'CO₂ terserap',
@@ -67,6 +70,7 @@ export const pilotYearOneTargets: PilotTarget[] = [
       'Perhitungan LCA BRIN 2023: 6,8 ton CO₂ per ton biochar — kontribusi langsung pada mitigasi perubahan iklim.',
     counter: { end: 20400, suffix: ' ton' },
     icon: 'carbon',
+    image: '/images/Produksi-biochar.jpg',
   },
   {
     label: 'Lapangan kerja baru',
@@ -74,6 +78,7 @@ export const pilotYearOneTargets: PilotTarget[] = [
       'Produsen biochar, teknisi IoT, dan logistik distribusi di ekosistem ekonomi sirkular lokal.',
     counter: { end: 100 },
     icon: 'jobs',
+    image: '/images/panag_laptop_disawah.jpg',
   },
   {
     label: 'Transaksi B2B selesai',
@@ -81,6 +86,7 @@ export const pilotYearOneTargets: PilotTarget[] = [
       'Jual-beli limbah, biochar, dan hasil panen organik tercatat otomatis melalui sistem escrow.',
     counter: { end: 1000, rangeEnd: 2000 },
     icon: 'b2b',
+    image: '/images/Dron_menyiaram_padi.jpg',
   },
   {
     label: 'Petani binaan aktif',
@@ -88,6 +94,7 @@ export const pilotYearOneTargets: PilotTarget[] = [
       'Terdaftar, bertransaksi, dan teredukasi produksi biochar grade A/B — didampingi penyuluh pertanian (PPL).',
     counter: { end: 10, rangeEnd: 20 },
     icon: 'farmers',
+    image: '/images/Petani_siram_tanaman.jpg',
   },
 ];
 

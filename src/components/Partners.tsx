@@ -3,28 +3,11 @@ import { bisaBrand } from '@/data/bisaAssets';
 import { ScrollReveal } from '@/components/ScrollReveal';
 
 const partnerLogos = [
-  'logo-kemenkop-ukm.webp',
-  'logo-ipb.webp',
-  'logo-itb.webp',
-  'logo-unpad.webp',
-  'logo-amartha.webp',
-  'logo-bjb.webp',
-  'logo-baznas.webp',
-  'logo-kitabisa.webp',
-  'logo-rumah-zakat.webp',
-  'logo-rumah-yatim.webp',
-  'logo-dompet-kilat.webp',
-  'logo-alami.webp',
-  'logo-refi.webp',
-  'logo-rabo.webp',
-  'logo-endeavor.webp',
-  'logo-500.webp',
-  'logo-scala.webp',
-  'logo-gen.webp',
-  'logo-insignia.webp',
-  'logo-aca.webp',
-  'logo-kantor-staff-presiden.webp',
-  'logo-tokyo-8.webp',
+  'logo-ojk.png',
+  'logo-apuvindo.png',
+  'logo-aspi.png',
+  'logo-fintech.png',
+  'logo-lppi.png',
 ];
 
 function PartnerLogo({ logo }: { logo: string }) {

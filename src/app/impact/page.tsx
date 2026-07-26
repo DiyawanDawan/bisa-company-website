@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { AnimatePresence, motion } from 'framer-motion';
 import PageBackLink from '@/components/PageBackLink';
 import TestimonialMarquee from '@/components/TestimonialMarquee';
 import AnimatedCounter from '@/components/AnimatedCounter';
@@ -15,7 +16,25 @@ import {
 } from '@/data/impactContent';
 import { ScrollReveal, StaggerReveal, StaggerItem } from '@/components/ScrollReveal';
 
+const pilotBgSlides = [
+  '/images/Petani_siram_tanaman.jpg',
+  '/images/Produksi-biochar.jpg',
+  '/images/Dron_menyiaram_padi.jpg',
+  '/images/panag_laptop_disawah.jpg',
+  '/images/hero_supply.png',
+  '/images/hero_inputs.png',
+];
+
 export default function ImpactPage() {
+  const [currentBg, setCurrentBg] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentBg((prev) => (prev + 1) % pilotBgSlides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="min-h-screen">
       <section className="bg-white pt-header pb-14 sm:pb-16 lg:pb-20">
@@ -77,13 +96,27 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      <section className="bg-[#f0fdf4] py-14 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <section
+        className="relative py-14 sm:py-16 lg:py-20 overflow-hidden"
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentBg}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2 }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${pilotBgSlides[currentBg]})` }}
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#135122]/60 via-transparent to-[#0f3d1a]/70" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <ScrollReveal className="space-y-2 max-w-3xl">
-            <p className="text-base sm:text-lg font-semibold text-elevarm-black">
+            <p className="text-base sm:text-lg font-semibold text-white">
               {impactHeroCopy.pilotHeading}
             </p>
-            <p className="text-sm text-elevarm-grey leading-relaxed">
+            <p className="text-sm text-white/80 leading-relaxed">
               {impactHeroCopy.pilotSubtext}
             </p>
           </ScrollReveal>
