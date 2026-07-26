@@ -43,10 +43,10 @@ export const bisaAssets = {
 
   /** Screenshot aplikasi (mockup perangkat) — public/images */
   screenshots: {
-    main: '/images/Samsung-Galaxy-S20-localhost.webp',
-    marketplace: '/images/Samsung-Galaxy-S20-localhost_market.webp',
-    forum: '/images/Samsung-Galaxy-S20-localhost.webp',
-    marketplacePng: '/images/Samsung-Galaxy-S20-localhost.png',
+    main: '/images/AI-Prediction_fecture.webp',
+    marketplace: '/images/Listing-produk-marketplace-b2b.webp',
+    forum: '/images/Iot-dasboard.png',
+    marketplacePng: '/images/Iot-dasboard.png',
   },
 
   product: {
