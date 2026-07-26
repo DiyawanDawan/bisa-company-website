@@ -5,7 +5,7 @@ export const bisaBrand = {
   tagline: 'Platform ekonomi sirkular biomassa pertanian Indonesia',
   email: 'hello@bisa.id',
   location: 'Lombok Tengah, Nusa Tenggara Barat, Indonesia',
-  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.apps.mobile_bisa',
+  playStoreUrl: 'https://drive.google.com/uc?export=download&id=1Qzdbr6QMGaMnb6hg9OVvIw9VHgJL6V-M',
   adminDemoUrl: 'https://office.bisaagri.com/signin?redirect=%2F',
   social: {
     instagram: 'https://instagram.com/bisa.id',
