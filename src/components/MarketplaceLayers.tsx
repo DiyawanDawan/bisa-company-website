@@ -77,14 +77,14 @@ export default function MarketplaceLayers() {
         {/* Header */}
         <ScrollReveal className="max-w-[810px] flex flex-col gap-6">
           <div className="flex flex-col gap-3">
-            <span className="text-sm font-bold text-elevarm-accent uppercase tracking-wider">
+            <span className="text-sm font-bold text-white uppercase tracking-wider">
               Marketplace Tiga Layer
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-[42px] font-bold text-elevarm-black font-display tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-[42px] font-bold text-white font-display tracking-tight leading-tight">
               Dari Limbah ke Panen Premium
             </h2>
           </div>
-          <p className="text-elevarm-grey text-base leading-relaxed">
+          <p className="text-white/90 text-base leading-relaxed ">
             BISA Marketplace hadir dalam tiga lapisan yang saling terhubung: limbah biomassa
             menjadi bahan baku biochar, biochar menyuburkan lahan, dan lahan sehat menghasilkan
             panen organik bernilai premium — satu siklus ekonomi sirkular yang utuh.
