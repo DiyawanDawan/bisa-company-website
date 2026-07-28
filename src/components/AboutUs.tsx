@@ -31,7 +31,7 @@ const teamStats = [
 
 const teamMembers = [
   {
-    name: 'DIAYAWAN',
+    name: 'DIYAWAN',
     role: 'Founder & CEO',
     image: '/images/team.png',
     bio: 'Memimpin BISA dengan visi ekonomi sirkular untuk pertanian Indonesia — menghubungkan petani, industri, dan pasar premium dalam satu ekosistem digital.',
