@@ -1,8 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Wheat, Flame, BadgeCheck, ArrowRight, ArrowDown } from 'lucide-react';
 import { ScrollReveal, StaggerReveal, StaggerItem } from '@/components/ScrollReveal';
+import { bisaAssets } from '@/data/bisaAssets';
+
+const bgSlides = [
+  { src: bisaAssets.banner.marketplace, position: 'center' },
+  { src: bisaAssets.banner.biochar, position: 'center' },
+  { src: bisaAssets.banner.organic, position: 'center 30%' },
+];
 
 const layersList = [
   {
@@ -29,13 +37,42 @@ const layersList = [
 ];
 
 export default function MarketplaceLayers() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % bgSlides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section
       id="marketplace-layers"
-      className="scroll-mt-header w-full py-10 sm:py-16 overflow-hidden"
+      className="scroll-mt-header relative w-full py-10 sm:py-16 overflow-hidden"
     >
+      {/* Auto-carousel background */}
+      <div className="absolute inset-0 z-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
+            className="absolute inset-0 bg-cover bg-no-repeat"
+            style={{
+              backgroundImage: `url(${bgSlides[current].src})`,
+              backgroundPosition: bgSlides[current].position,
+            }}
+          />
+        </AnimatePresence>
+        {/* Overlay to keep content readable */}
+        <div className="absolute inset-0 backdrop-blur-[2px]" />
+      </div>
+
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10 md:gap-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10 md:gap-12">
 
         {/* Header */}
         <ScrollReveal className="max-w-[810px] flex flex-col gap-6">
